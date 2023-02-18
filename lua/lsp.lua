@@ -3,6 +3,9 @@ local lspconfig = require "lspconfig"
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local min = {capabilities = capabilities}
 
+local capabilitiesSnippets = require('cmp_nvim_lsp').default_capabilities()
+capabilitiesSnippets.textDocument.completion.completionItem.snippetSupport = true
+
 require('lspsaga').setup({
     finder = {
         jump_to = 'p',
@@ -212,5 +215,14 @@ lspconfig.bufls.setup(min)
 lspconfig.dhall_lsp_server.setup(min)
 lspconfig.golangci_lint_ls.setup(min)
 lspconfig.sourcekit.setup(min)
+lspconfig.cssls.setup({
+    capabilities = capabilitiesSnippets,
+})
+lspconfig.jsonls.setup({
+    capabilities = capabilitiesSnippets,
+})
+lspconfig.html.setup({
+    capabilities = capabilitiesSnippets,
+})
 
 require("rust-tools").setup {}
