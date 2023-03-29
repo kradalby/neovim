@@ -309,11 +309,11 @@
     "vim:lspsaga.nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1680074814,
-        "narHash": "sha256-+/BfnWXnX3od9+JYTbx6na4dFZqHX3VAhgy/h688SZo=",
+        "lastModified": 1680096153,
+        "narHash": "sha256-tcvpDHGFV7elpy8af/EOsIRyvaqEqLTF/dEWCTSBaSY=",
         "owner": "glepnir",
         "repo": "lspsaga.nvim",
-        "rev": "59f70666d4de09d31ebe72dd5abd94e4a359edc4",
+        "rev": "abb0e427ffd70cb5b240f17d996b7c84cd55d001",
         "type": "github"
       },
       "original": {
