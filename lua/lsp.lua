@@ -7,6 +7,7 @@ local capabilitiesSnippets = require('cmp_nvim_lsp').default_capabilities()
 capabilitiesSnippets.textDocument.completion.completionItem.snippetSupport = true
 
 require('lspsaga').setup({
+    request_timeout = 5000,
     finder = {
         jump_to = 'p',
         edit = { "o", "<CR>" },
