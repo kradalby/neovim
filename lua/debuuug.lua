@@ -3,7 +3,31 @@ local dapui = require("dapui")
 local tse = require('telescope').extensions
 
 dapui.setup()
-require("dap-go").setup()
+require("dap-go").setup({
+        dap_configurations = {
+            {
+            name =  "Debug tailcontrol",
+            type =  "go",
+            request =  "launch",
+            mode =  "exec",
+            program = vim.fn.getcwd() .. "/cmd/tailcontrol/main.go",
+            args =  {
+                "-dev",
+                "-confdir=./ignore",
+                "--addr=:31544",
+                "--url=http://localhost:31544"
+            },
+        },
+        {
+            name =  "Debug tailcontrol test",
+            type =  "go",
+            request =  "launch",
+            mode =  "exec",
+            -- program =  "${fileDirname}/__debug_bin",
+            -- cwd =  "${fileDirname}",
+        }
+        },
+    })
 require("nvim-dap-virtual-text").setup()
 
 
