@@ -218,7 +218,8 @@
       };
 
       "vim:nvim-dap-go" = {
-        url = "github:leoluz/nvim-dap-go";
+        # url = "github:leoluz/nvim-dap-go";
+        url = "github:kradalby/nvim-dap-go";
         flake = false;
       };
 
