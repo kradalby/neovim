@@ -7,7 +7,7 @@ require("dap-go").setup({
                 name =  "Debug tailcontrol",
                 type =  "go",
                 request =  "launch",
-                program = vim.fn.getcwd() .. "/cmd/tailcontrol/tailcontrol.go",
+                program = vim.fn.getcwd() .. "/cmd/tailcontrol/",
                 args =  {
                     "-dev",
                     "-confdir=./ignore",
