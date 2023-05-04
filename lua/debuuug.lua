@@ -9,7 +9,7 @@ require("dap-go").setup({
             name =  "Debug tailcontrol",
             type =  "go",
             request =  "launch",
-            mode =  "exec",
+            -- mode =  "exec",
             program = vim.fn.getcwd() .. "/cmd/tailcontrol/",
             args =  {
                 "-dev",
