@@ -7,7 +7,7 @@ require("dap-go").setup({
                 name =  "Debug tailcontrol",
                 type =  "go",
                 request =  "launch",
-                program = vim.fn.getcwd() .. "/cmd/tailcontrol/",
+                program = vim.fn.getcwd() .. "/cmd/tailcontrol/tailcontrol.go",
                 args =  {
                     "-dev",
                     "-confdir=./ignore",
@@ -15,13 +15,6 @@ require("dap-go").setup({
                     "--url=http://localhost:31544"
                 },
             },
-            {
-                name =  "Debug test",
-                type =  "go",
-                request =  "launch",
-                mode = "test",
-                program = "${file}",
-            }
         },
         delve = {
             port = "${port}",
