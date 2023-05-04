@@ -25,7 +25,7 @@ require("dap-go").setup({
         },
         delve = {
             port = "${port}",
-            args = {"--check-go-version=false"},
+            args = {"--check-go-version=false", "--log", "--log-output=dap"},
         },
     })
 require("nvim-dap-virtual-text").setup()
