@@ -455,11 +455,11 @@
     "vim:nvim-dap-go": {
       "flake": false,
       "locked": {
-        "lastModified": 1683212810,
-        "narHash": "sha256-yB5CIpq62XrGw/JHzL2N4XFD7uLw7TRr4Ho1kzVz4Iw=",
+        "lastModified": 1683212976,
+        "narHash": "sha256-gwafzFakQLKLn3QQL+KNsbYT855Ps9DXTVUVNQiYik0=",
         "owner": "kradalby",
         "repo": "nvim-dap-go",
-        "rev": "f5f2854b8af764e0d3fe68971bb3f65f18c29e49",
+        "rev": "d54805b4f3f3acf7597d2b15a86d3ff06415468b",
         "type": "github"
       },
       "original": {
