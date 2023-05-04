@@ -26,6 +26,7 @@ require("dap-go").setup({
             }
         },
         delve = {
+            port = "56677",
             args = {"--check-go-version=false"},
         },
     })
