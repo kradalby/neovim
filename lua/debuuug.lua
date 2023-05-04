@@ -6,31 +6,32 @@ dapui.setup()
 require("dap-go").setup({
         dap_configurations = {
             {
-            name =  "Debug tailcontrol",
-            type =  "go",
-            request =  "launch",
-            -- mode =  "exec",
-            program = vim.fn.getcwd() .. "/cmd/tailcontrol/",
-            args =  {
-                "-dev",
-                "-confdir=./ignore",
-                "--addr=:31544",
-                "--url=http://localhost:31544"
+                name =  "Debug tailcontrol",
+                type =  "go",
+                request =  "launch",
+                program = vim.fn.getcwd() .. "/cmd/tailcontrol/",
+                args =  {
+                    "-dev",
+                    "-confdir=./ignore",
+                    "--addr=:31544",
+                    "--url=http://localhost:31544"
+                },
             },
+            {
+                name =  "Debug test",
+                type =  "go",
+                request =  "launch",
+                mode = "test",
+                program = "${file}",
+            }
         },
-        {
-            name =  "Debug tailcontrol test",
-            type =  "go",
-            request =  "launch",
-            mode =  "exec",
-            -- program =  "${fileDirname}/__debug_bin",
-            -- cwd =  "${fileDirname}",
-        }
+        delve = {
+            args = {"--check-go-version=false"},
         },
     })
 require("nvim-dap-virtual-text").setup()
 
-vim.keymap.set("n", "<leader>dc", dap.continue, {})
+vim.keymap.set("n", "<leader>dc", require("dap").continue, {})
 vim.keymap.set("n", "<leader>ds", dap.step_over, {})
 vim.keymap.set("n", "<leader>dsi", dap.step_into, {})
 vim.keymap.set("n", "<leader>dso", dap.step_out, {})
