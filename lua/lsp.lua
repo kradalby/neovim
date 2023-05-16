@@ -3,8 +3,12 @@ local lspconfig = require "lspconfig"
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local min = {capabilities = capabilities}
 
-local capabilitiesSnippets = require('cmp_nvim_lsp').default_capabilities()
-capabilitiesSnippets.textDocument.completion.completionItem.snippetSupport = true
+local capSnippets = require('cmp_nvim_lsp').default_capabilities()
+capSnippets.textDocument.completion.completionItem.snippetSupport = true
+
+local capNoFormat = require('cmp_nvim_lsp').default_capabilities()
+capNoFormat.server_capabilities.documentFormatting = false
+capNoFormat.server_capabilities.documentRangeFormattingProvider = false
 
 require('lspsaga').setup({
     request_timeout = 5000,
@@ -51,7 +55,7 @@ null_ls.setup(
             null_ls.builtins.completion.spell,
             null_ls.builtins.diagnostics.editorconfig_checker.with(
                 {
-                    command = "editorconfig-checker"
+                    args = {"-disable-indentation", "-no-color", "$FILENAME"},
                 }
             ),
             null_ls.builtins.diagnostics.actionlint,
@@ -209,7 +213,11 @@ lspconfig.efm.setup {
 
 
 lspconfig.nil_ls.setup(min)
-lspconfig.rnix.setup(min)
+lspconfig.rnix.setup({
+        -- Disable formatting as we want to use Alejandra from
+        -- null-ls instead.
+        capabilities = capNoFormat,
+    })
 lspconfig.elmls.setup(min)
 lspconfig.terraformls.setup(min)
 lspconfig.bufls.setup(min)
@@ -218,13 +226,13 @@ lspconfig.golangci_lint_ls.setup(min)
 lspconfig.sourcekit.setup(min)
 lspconfig.tsserver.setup(min)
 lspconfig.cssls.setup({
-    capabilities = capabilitiesSnippets,
+    capabilities = capSnippets,
 })
 lspconfig.jsonls.setup({
-    capabilities = capabilitiesSnippets,
+    capabilities = capSnippets,
 })
 lspconfig.html.setup({
-    capabilities = capabilitiesSnippets,
+    capabilities = capSnippets,
 })
 
 require("rust-tools").setup {}
