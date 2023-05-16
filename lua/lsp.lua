@@ -6,10 +6,6 @@ local min = {capabilities = capabilities}
 local capSnippets = require('cmp_nvim_lsp').default_capabilities()
 capSnippets.textDocument.completion.completionItem.snippetSupport = true
 
-local capNoFormat = require('cmp_nvim_lsp').default_capabilities()
-capNoFormat.server_capabilities.documentFormatting = false
-capNoFormat.server_capabilities.documentRangeFormattingProvider = false
-
 require('lspsaga').setup({
     request_timeout = 5000,
     finder = {
@@ -216,7 +212,12 @@ lspconfig.nil_ls.setup(min)
 lspconfig.rnix.setup({
         -- Disable formatting as we want to use Alejandra from
         -- null-ls instead.
-        capabilities = capNoFormat,
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+          on_attach(client, bufnr)
+        end,
     })
 lspconfig.elmls.setup(min)
 lspconfig.terraformls.setup(min)
