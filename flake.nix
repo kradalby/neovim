@@ -260,97 +260,93 @@
       };
     };
 
-  outputs =
-    { self
-    , flake-utils
-    , nixpkgs
-    , ...
-    } @ inputs:
+  outputs = {
+    self,
+    flake-utils,
+    nixpkgs,
+    ...
+  } @ inputs:
     {
-      overlay = final: prev:
-        let
-          pkgs = import nixpkgs {
-            inherit (prev) system;
-            # overlays = [neovim-nightly-overlay.overlay];
-          };
+      overlay = final: prev: let
+        pkgs = import nixpkgs {
+          inherit (prev) system;
+          # overlays = [neovim-nightly-overlay.overlay];
+        };
 
-          # Build Vim plugin flake inputs into a list of Nix packages
-          vimPackages = with pkgs.lib;
-            with strings;
-            mapAttrsToList
-              (n: v:
-                pkgs.vimUtils.buildVimPluginFrom2Nix {
-                  name = removePrefix "vim:" n;
-                  src = v.outPath;
-                  namePrefix = "";
-                })
-              (filterAttrs (n: v: hasPrefix "vim:" n) inputs);
+        # Build Vim plugin flake inputs into a list of Nix packages
+        vimPackages = with pkgs.lib;
+        with strings;
+          mapAttrsToList
+          (n: v:
+            pkgs.vimUtils.buildVimPluginFrom2Nix {
+              name = removePrefix "vim:" n;
+              src = v.outPath;
+              namePrefix = "";
+            })
+          (filterAttrs (n: v: hasPrefix "vim:" n) inputs);
 
-          telescopeFzfNative = pkgs.vimUtils.buildVimPluginFrom2Nix {
-            name = "telescope-fzf-native.nvim";
-            src = inputs."telescope-fzf-native.nvim".outPath;
-            namePrefix = "";
-            buildPhase = ''
-              make
-            '';
-          };
-
-          neovim-nix-lua-conf = pkgs.writeText "nix.lua" ''
-            vim.g.sqlite_clib_path = "${pkgs.sqlite.out}/lib/${
-              if pkgs.stdenv.isDarwin
-              then "libsqlite3.dylib"
-              else "libsqlite3.so"
-            }"
+        telescopeFzfNative = pkgs.vimUtils.buildVimPluginFrom2Nix {
+          name = "telescope-fzf-native.nvim";
+          src = inputs."telescope-fzf-native.nvim".outPath;
+          namePrefix = "";
+          buildPhase = ''
+            make
           '';
+        };
 
-          # TODO: Only copy *.lua files, maybe with `nix-filter`
-          # Make a derivation containing only Neovim Lua config
-          neovim-kradalby-luaconfig = pkgs.stdenv.mkDerivation rec {
-            name = "neovim-kradalby-luaconfig";
-            src = pkgs.nix-gitignore.gitignoreSource [ ] ./.;
-            phases = "installPhase";
-            installPhase = ''
-              mkdir -p $out/lua
-              cp ${neovim-nix-lua-conf} $out/lua/nix.lua
-              cp -r ${src}/init.lua $out/init.lua
-              cp -r ${src}/lua/* $out/lua/.
-            '';
-          };
-        in
-        {
-          # Wrap Neovim with custom plugins and config
-          neovim-kradalby = pkgs.neovim.override {
-            viAlias = true;
-            vimAlias = true;
-            withNodeJs = false;
+        neovim-nix-lua-conf = pkgs.writeText "nix.lua" ''
+          vim.g.sqlite_clib_path = "${pkgs.sqlite.out}/lib/${
+            if pkgs.stdenv.isDarwin
+            then "libsqlite3.dylib"
+            else "libsqlite3.so"
+          }"
+        '';
 
-            configure = {
-              packages.kradalby = with pkgs.vimPlugins; {
-                start =
-                  [
-                    (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
-                    telescopeFzfNative
-                  ]
-                  ++ vimPackages;
-              };
+        # TODO: Only copy *.lua files, maybe with `nix-filter`
+        # Make a derivation containing only Neovim Lua config
+        neovim-kradalby-luaconfig = pkgs.stdenv.mkDerivation rec {
+          name = "neovim-kradalby-luaconfig";
+          src = pkgs.nix-gitignore.gitignoreSource [] ./.;
+          phases = "installPhase";
+          installPhase = ''
+            mkdir -p $out/lua
+            cp ${neovim-nix-lua-conf} $out/lua/nix.lua
+            cp -r ${src}/init.lua $out/init.lua
+            cp -r ${src}/lua/* $out/lua/.
+          '';
+        };
+      in {
+        # Wrap Neovim with custom plugins and config
+        neovim-kradalby = pkgs.neovim.override {
+          viAlias = true;
+          vimAlias = true;
+          withNodeJs = false;
 
-              customRC = ''
-                set runtimepath^=${neovim-kradalby-luaconfig}
-                luafile ${neovim-kradalby-luaconfig}/init.lua
-              '';
+          configure = {
+            packages.kradalby = with pkgs.vimPlugins; {
+              start =
+                [
+                  (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+                  telescopeFzfNative
+                ]
+                ++ vimPackages;
             };
+
+            customRC = ''
+              set runtimepath^=${neovim-kradalby-luaconfig}
+              luafile ${neovim-kradalby-luaconfig}/init.lua
+            '';
           };
         };
+      };
     }
     // flake-utils.lib.eachDefaultSystem (
-      system:
-      let
+      system: let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ self.overlay ];
+          overlays = [self.overlay];
         };
-      in
-      rec {
+      in rec {
         packages = with pkgs; {
           inherit neovim-kradalby;
 
@@ -358,7 +354,7 @@
         };
 
         defaultPackage = packages.neovim-kradalby;
-        apps.neovim-kradalby = flake-utils.lib.mkApp { drv = packages.neovim-kradalby; };
+        apps.neovim-kradalby = flake-utils.lib.mkApp {drv = packages.neovim-kradalby;};
         defaultApp = apps.neovim-kradalby;
 
         overlays.default = self.overlay;
