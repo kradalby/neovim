@@ -75,6 +75,18 @@ local dap = require("dap")
 local tse = require('telescope').extensions
 local dapui = require("dapui")
 
+vim.keymap.set("n", "<F5>", dap.continue, {})
+vim.keymap.set("n", "<F10>", dap.step_over, {})
+vim.keymap.set("n", "<F11>", dap.step_into, {})
+vim.keymap.set("n", "<F12>", dap.step_out, {})
+vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, {})
+vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+  dapui.hover()
+end)
+vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+  dapui.preview()
+end)
+
 vim.keymap.set("n", "<leader>dc", dap.continue, {})
 vim.keymap.set("n", "<leader>ds", dap.step_over, {})
 vim.keymap.set("n", "<leader>dsi", dap.step_into, {})
