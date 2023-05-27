@@ -30,7 +30,7 @@
         flake = false;
       };
 
-      nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+      nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
 
       # "vim:" = {
       #   url = "github:";
