@@ -133,7 +133,7 @@
       };
 
       "vim:lspsaga.nvim" = {
-        url = "github:glepnir/lspsaga.nvim";
+        url = "github:nvimdev/lspsaga.nvim";
         flake = false;
       };
 
