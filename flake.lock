@@ -329,13 +329,13 @@
       "locked": {
         "lastModified": 1686048581,
         "narHash": "sha256-mNTpaXlEnL8oIKle7p8J1gx7k8bRyhil5ecLU5DD9Fw=",
-        "owner": "glepnir",
+        "owner": "nvimdev",
         "repo": "lspsaga.nvim",
         "rev": "4f075452c466df263e69ae142f6659dcf9324bf6",
         "type": "github"
       },
       "original": {
-        "owner": "glepnir",
+        "owner": "nvimdev",
         "repo": "lspsaga.nvim",
         "type": "github"
       }
