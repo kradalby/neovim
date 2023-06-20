@@ -133,7 +133,8 @@
       };
 
       "vim:lspsaga.nvim" = {
-        url = "github:nvimdev/lspsaga.nvim/33d08e6b2f45933cb4dcd50cf19c47b7352d417b";
+        url = "github:nvimdev/lspsaga.nvim/85ccf43fbf957a798ca0deab933ad59b7eb75d67";
+        # url = "github:nvimdev/lspsaga.nvim/33d08e6b2f45933cb4dcd50cf19c47b7352d417b";
         flake = false;
       };
 
