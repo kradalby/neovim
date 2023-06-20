@@ -327,16 +327,17 @@
     "vim:lspsaga.nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1686048581,
-        "narHash": "sha256-mNTpaXlEnL8oIKle7p8J1gx7k8bRyhil5ecLU5DD9Fw=",
+        "lastModified": 1684148260,
+        "narHash": "sha256-p58UOnl0pj4eqlbjdgCiqb3WFSiXTfMdI3TI3HDTyEw=",
         "owner": "nvimdev",
         "repo": "lspsaga.nvim",
-        "rev": "4f075452c466df263e69ae142f6659dcf9324bf6",
+        "rev": "33d08e6b2f45933cb4dcd50cf19c47b7352d417b",
         "type": "github"
       },
       "original": {
         "owner": "nvimdev",
         "repo": "lspsaga.nvim",
+        "rev": "33d08e6b2f45933cb4dcd50cf19c47b7352d417b",
         "type": "github"
       }
     },
