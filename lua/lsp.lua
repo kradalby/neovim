@@ -236,6 +236,7 @@ lspconfig.dhall_lsp_server.setup(min)
 lspconfig.golangci_lint_ls.setup(min)
 lspconfig.sourcekit.setup(min)
 lspconfig.tsserver.setup(min)
+lspconfig.pyright.setup(min)
 lspconfig.cssls.setup({
     capabilities = capSnippets,
 })
