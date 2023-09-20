@@ -139,8 +139,11 @@ lspconfig.lua_ls.setup({
 lspconfig.gopls.setup {
     capabilities = capabilities,
     settings = {
-        gopls = {
-        }
+      gopls = {
+        gofumpt = true,
+        staticcheck = true,
+        templateExtensions = { "tmpl", "gotmpl", "tpl" },
+      },
     }
 }
 
