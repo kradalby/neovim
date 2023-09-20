@@ -55,30 +55,37 @@ null_ls.setup(
                 }
             ),
             null_ls.builtins.diagnostics.actionlint,
+            null_ls.builtins.diagnostics.buf,
             null_ls.builtins.diagnostics.commitlint,
             null_ls.builtins.diagnostics.curlylint,
             null_ls.builtins.diagnostics.deadnix,
             null_ls.builtins.diagnostics.djlint,
             null_ls.builtins.diagnostics.eslint_d,
             null_ls.builtins.diagnostics.fish,
+            null_ls.builtins.diagnostics.flake8,
             null_ls.builtins.diagnostics.gitlint,
             null_ls.builtins.diagnostics.hadolint,
+            null_ls.builtins.diagnostics.mypy,
             null_ls.builtins.diagnostics.proselint,
             null_ls.builtins.diagnostics.pylama,
             null_ls.builtins.diagnostics.shellcheck,
             null_ls.builtins.diagnostics.staticcheck,
             null_ls.builtins.diagnostics.statix,
+            null_ls.builtins.diagnostics.stylelint,
+            null_ls.builtins.diagnostics.tidy,
             null_ls.builtins.diagnostics.vale,
             null_ls.builtins.diagnostics.write_good,
-            null_ls.builtins.diagnostics.tidy,
+            null_ls.builtins.diagnostics.yamllint,
             null_ls.builtins.formatting.alejandra,
             null_ls.builtins.formatting.beautysh,
             null_ls.builtins.formatting.black,
+            null_ls.builtins.formatting.buf,
             null_ls.builtins.formatting.cbfmt,
             null_ls.builtins.formatting.clang_format,
             null_ls.builtins.formatting.djlint,
             null_ls.builtins.formatting.eslint_d,
             null_ls.builtins.formatting.fish_indent,
+            null_ls.builtins.formatting.golines,
             null_ls.builtins.formatting.goimports.with({
                 condition = function(utils)
                     -- Try to detect if we are in a tailscale repo
@@ -95,6 +102,8 @@ null_ls.setup(
             null_ls.builtins.formatting.tidy,
             null_ls.builtins.formatting.prettier_d_slim,
             null_ls.builtins.formatting.shellharden,
+            null_ls.builtins.formatting.shfmt,
+            null_ls.builtins.formatting.stylelint,
             null_ls.builtins.formatting.swiftformat,
             -- null_ls.builtins.formatting.terraform_fmt, -- Covered by LSP?
             null_ls.builtins.formatting.trim_newlines,
@@ -170,47 +179,6 @@ lspconfig.ansiblels.setup {
         return lspconfig.util.root_pattern { "requirements.yaml", "inventory" } (fname)
     end
 }
-
--- local home = os.getenv("HOME")
--- local efm = require "efm"
--- lspconfig.efm.setup {
---     capabilities = capabilities,
---     default_options = {
---         -- cmd_env = go.env(root_dir),
---         cmd = {
---             "efm-langserver",
---             "-logfile",
---             home .. "/.config/efm-langserver/efm.log",
---             "-loglevel",
---             "1"
---         }
---     },
---
---     flags = { debounce_text_changes = 2000 },
---     root_dir = lspconfig.util.root_pattern(".git", "."),
---     filetypes = vim.tbl_keys(efm.languages),
---     init_options = {
---         documentFormatting = true,
---         document_formatting = true,
---         documentSymbol = true,
---         codeAction = true
---     },
---
---     settings = {
---         lintDebounce = "1000ms",
---         formatDebounce = "1000ms",
---         rootMarkers = { ".git/" },
---         languages = efm.languages
---     },
---
---     on_attach = function(client)
---         client.server_capabilities.document_formatting = true
---         client.server_capabilities.goto_definition = false
---         -- client.server_capabilities.code_action = false
---         -- common_on_attach(client)
---     end
--- }
-
 
 lspconfig.nil_ls.setup(min)
 lspconfig.nixd.setup({
