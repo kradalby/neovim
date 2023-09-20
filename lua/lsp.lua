@@ -119,7 +119,7 @@ lspconfig.lua_ls.setup({
     settings = {
         Lua = {
             format = {
-                enable = false,
+                enable = true,
             },
             hint = {
                 enable = true,
