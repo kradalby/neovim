@@ -93,7 +93,7 @@ null_ls.setup(
             null_ls.builtins.formatting.isort,
             null_ls.builtins.formatting.jq,
             null_ls.builtins.formatting.tidy,
-            null_ls.builtins.formatting.prettierd,
+            null_ls.builtins.formatting.prettier_d_slim,
             null_ls.builtins.formatting.shellharden,
             null_ls.builtins.formatting.swiftformat,
             -- null_ls.builtins.formatting.terraform_fmt, -- Covered by LSP?
