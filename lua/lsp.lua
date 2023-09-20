@@ -138,7 +138,7 @@ lspconfig.lua_ls.setup({
 })
 lspconfig.gopls.setup {
     capabilities = capabilities,
-    filetypes = { "go", "gomod", "gotemplate" },
+    filetypes = { "go", "gomod", "gotexttmpl", "gohtmltmpl" },
     settings = {
       gopls = {
         gofumpt = true,
