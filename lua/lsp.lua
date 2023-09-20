@@ -171,45 +171,45 @@ lspconfig.ansiblels.setup {
     end
 }
 
-local home = os.getenv("HOME")
-local efm = require "efm"
-lspconfig.efm.setup {
-    capabilities = capabilities,
-    default_options = {
-        -- cmd_env = go.env(root_dir),
-        cmd = {
-            "efm-langserver",
-            "-logfile",
-            home .. "/.config/efm-langserver/efm.log",
-            "-loglevel",
-            "1"
-        }
-    },
-
-    flags = { debounce_text_changes = 2000 },
-    root_dir = lspconfig.util.root_pattern(".git", "."),
-    filetypes = vim.tbl_keys(efm.languages),
-    init_options = {
-        documentFormatting = true,
-        document_formatting = true,
-        documentSymbol = true,
-        codeAction = true
-    },
-
-    settings = {
-        lintDebounce = "1000ms",
-        formatDebounce = "1000ms",
-        rootMarkers = { ".git/" },
-        languages = efm.languages
-    },
-
-    on_attach = function(client)
-        client.server_capabilities.document_formatting = true
-        client.server_capabilities.goto_definition = false
-        -- client.server_capabilities.code_action = false
-        -- common_on_attach(client)
-    end
-}
+-- local home = os.getenv("HOME")
+-- local efm = require "efm"
+-- lspconfig.efm.setup {
+--     capabilities = capabilities,
+--     default_options = {
+--         -- cmd_env = go.env(root_dir),
+--         cmd = {
+--             "efm-langserver",
+--             "-logfile",
+--             home .. "/.config/efm-langserver/efm.log",
+--             "-loglevel",
+--             "1"
+--         }
+--     },
+--
+--     flags = { debounce_text_changes = 2000 },
+--     root_dir = lspconfig.util.root_pattern(".git", "."),
+--     filetypes = vim.tbl_keys(efm.languages),
+--     init_options = {
+--         documentFormatting = true,
+--         document_formatting = true,
+--         documentSymbol = true,
+--         codeAction = true
+--     },
+--
+--     settings = {
+--         lintDebounce = "1000ms",
+--         formatDebounce = "1000ms",
+--         rootMarkers = { ".git/" },
+--         languages = efm.languages
+--     },
+--
+--     on_attach = function(client)
+--         client.server_capabilities.document_formatting = true
+--         client.server_capabilities.goto_definition = false
+--         -- client.server_capabilities.code_action = false
+--         -- common_on_attach(client)
+--     end
+-- }
 
 
 lspconfig.nil_ls.setup(min)
