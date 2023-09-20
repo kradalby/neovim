@@ -63,7 +63,7 @@
       };
 
       "vim:null-ls.nvim" = {
-        url = "github:jose-elias-alvarez/null-ls.nvim";
+        url = "github:neovim-stuff/null-ls.nvim";
         flake = false;
       };
 
