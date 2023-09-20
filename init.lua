@@ -1,4 +1,5 @@
 require("nix")
+require("filetype")
 require("statusline")
 require("completion")
 require("todo")
