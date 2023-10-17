@@ -376,16 +376,16 @@
     "vim:null-ls.nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1695118448,
-        "narHash": "sha256-7+W+EF4zcbD9V+wNUOGAzLOk5RtKrxU9lnnB+PLn6yc=",
-        "owner": "neovim-stuff",
-        "repo": "null-ls.nvim",
-        "rev": "0df4fe461d66aff800412d895e9d0ec1ba6b5add",
+        "lastModified": 1696658105,
+        "narHash": "sha256-4+B2F4ZweWTqXlhSs0jiBaKSv52G4X7p37KHfYl6sPo=",
+        "owner": "nvimtools",
+        "repo": "none-ls.nvim",
+        "rev": "ae339f45590cc421a68de885fc5a3261cc247362",
         "type": "github"
       },
       "original": {
-        "owner": "neovim-stuff",
-        "repo": "null-ls.nvim",
+        "owner": "nvimtools",
+        "repo": "none-ls.nvim",
         "type": "github"
       }
     },
