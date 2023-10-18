@@ -4,9 +4,9 @@ telescope.load_extension('fzf')
 telescope.load_extension('dap')
 
 require('neoclip').setup(
-    {
-        enable_persistent_history = true,
-    }
+  {
+    enable_persistent_history = true,
+  }
 )
 
 local b = require("telescope.builtin")

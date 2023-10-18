@@ -63,7 +63,7 @@
       };
 
       "vim:null-ls.nvim" = {
-        url = "github:neovim-stuff/null-ls.nvim";
+        url = "github:nvimtools/none-ls.nvim";
         flake = false;
       };
 
@@ -245,6 +245,11 @@
 
       "vim:telescope.nvim" = {
         url = "github:nvim-telescope/telescope.nvim";
+        flake = false;
+      };
+
+      "vim:co-author.nvim" = {
+        url = "github:2KAbhishek/co-author.nvim";
         flake = false;
       };
 
