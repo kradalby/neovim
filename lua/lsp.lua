@@ -85,18 +85,17 @@ null_ls.setup(
       null_ls.builtins.formatting.djlint,
       null_ls.builtins.formatting.eslint_d,
       null_ls.builtins.formatting.fish_indent,
-      null_ls.builtins.formatting.golines,
       null_ls.builtins.formatting.goimports.with({
         condition = function(utils)
           -- Try to detect if we are in a tailscale repo
           return utils.root_has_file({ "go.toolchain.rev" })
         end,
       }),
-      -- null_ls.builtins.formatting.golines.with({
-      --   condition = function(utils)
-      --     return not utils.root_has_file({ "go.toolchain.rev" })
-      --   end,
-      -- }),
+      null_ls.builtins.formatting.golines.with({
+        condition = function(utils)
+          return not utils.root_has_file({ "go.toolchain.rev" })
+        end,
+      }),
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.jq,
       null_ls.builtins.formatting.tidy,
