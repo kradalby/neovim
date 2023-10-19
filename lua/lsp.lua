@@ -92,11 +92,11 @@ null_ls.setup(
           return utils.root_has_file({ "go.toolchain.rev" })
         end,
       }),
-      null_ls.builtins.formatting.golines.with({
-        condition = function(utils)
-          return not utils.root_has_file({ "go.toolchain.rev" })
-        end,
-      }),
+      -- null_ls.builtins.formatting.golines.with({
+      --   condition = function(utils)
+      --     return not utils.root_has_file({ "go.toolchain.rev" })
+      --   end,
+      -- }),
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.jq,
       null_ls.builtins.formatting.tidy,
@@ -132,11 +132,11 @@ lspconfig.lua_ls.setup({
       },
       hint = {
         enable = true,
-        arrayIndex = "Disable",         -- "Enable", "Auto", "Disable"
+        arrayIndex = "Disable", -- "Enable", "Auto", "Disable"
         await = true,
-        paramName = "Disable",          -- "All", "Literal", "Disable"
+        paramName = "Disable",  -- "All", "Literal", "Disable"
         paramType = false,
-        semicolon = "Disable",          -- "All", "SameLine", "Disable"
+        semicolon = "Disable",  -- "All", "SameLine", "Disable"
         setType = true,
       },
       diagnostics = {
