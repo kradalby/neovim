@@ -207,5 +207,29 @@ lspconfig.jsonls.setup({
 lspconfig.html.setup({
   capabilities = capSnippets,
 })
+lspconfig.tailwindcss.setup({
+  -- Disable formatting as we want to use Alejandra from
+  -- null-ls instead.
+  capabilities = capabilities,
+  settings = {
+    tailwindCSS = {
+      lint = {
+        cssConflict = "warning",
+        invalidApply = "error",
+        invalidConfigPath = "error",
+        invalidScreen = "error",
+        invalidTailwindDirective = "error",
+        recommendedVariantOrder = "warning",
+        unusedClass = "warning",
+      },
+      experimental = {
+        classRegex = {
+          'a.Class: "([^"]*)"',
+        },
+      },
+      validate = true,
+    },
+  },
+})
 
 require("rust-tools").setup {}
