@@ -211,6 +211,9 @@ lspconfig.tailwindcss.setup({
   -- Disable formatting as we want to use Alejandra from
   -- null-ls instead.
   capabilities = capabilities,
+  filetypes = {
+    "go"
+  },
   settings = {
     tailwindCSS = {
       lint = {
