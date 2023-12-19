@@ -283,14 +283,14 @@
         with strings;
           mapAttrsToList
           (n: v:
-            pkgs.vimUtils.buildVimPluginFrom2Nix {
+            pkgs.vimUtils.buildVimPlugin {
               name = removePrefix "vim:" n;
               src = v.outPath;
               namePrefix = "";
             })
           (filterAttrs (n: v: hasPrefix "vim:" n) inputs);
 
-        telescopeFzfNative = pkgs.vimUtils.buildVimPluginFrom2Nix {
+        telescopeFzfNative = pkgs.vimUtils.buildVimPlugin {
           name = "telescope-fzf-native.nvim";
           src = inputs."telescope-fzf-native.nvim".outPath;
           namePrefix = "";
