@@ -213,6 +213,11 @@
         flake = false;
       };
 
+      "vim:nvim-nio" = {
+        url = "github:nvim-neotest/nvim-nio";
+        flake = false;
+      };
+
       "vim:nvim-dap-python" = {
         url = "github:mfussenegger/nvim-dap-python";
         flake = false;
