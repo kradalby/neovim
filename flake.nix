@@ -193,50 +193,50 @@
         flake = false;
       };
 
-      "vim:trouble.nvim" = {
-        url = "github:folke/trouble.nvim";
-        flake = false;
-      };
+      # "vim:trouble.nvim" = {
+      #   url = "github:folke/trouble.nvim";
+      #   flake = false;
+      # };
 
       "vim:todo-comments.nvim" = {
         url = "github:folke/todo-comments.nvim";
         flake = false;
       };
 
-      "vim:nvim-dap" = {
-        url = "github:mfussenegger/nvim-dap";
-        flake = false;
-      };
-
-      "vim:nvim-dap-ui" = {
-        url = "github:rcarriga/nvim-dap-ui";
-        flake = false;
-      };
-
-      "vim:nvim-nio" = {
-        url = "github:nvim-neotest/nvim-nio";
-        flake = false;
-      };
-
-      "vim:nvim-dap-python" = {
-        url = "github:mfussenegger/nvim-dap-python";
-        flake = false;
-      };
-
-      "vim:nvim-dap-go" = {
-        url = "github:leoluz/nvim-dap-go";
-        flake = false;
-      };
-
-      "vim:nvim-dap-virtual-text" = {
-        url = "github:theHamsta/nvim-dap-virtual-text";
-        flake = false;
-      };
-
-      "vim:telescope-dap.nvim" = {
-        url = "github:nvim-telescope/telescope-dap.nvim";
-        flake = false;
-      };
+      # "vim:nvim-nio" = {
+      #   url = "github:nvim-neotest/nvim-nio";
+      #   flake = false;
+      # };
+      #
+      # "vim:nvim-dap" = {
+      #   url = "github:mfussenegger/nvim-dap";
+      #   flake = false;
+      # };
+      #
+      # "vim:nvim-dap-ui" = {
+      #   url = "github:rcarriga/nvim-dap-ui";
+      #   flake = false;
+      # };
+      #
+      # "vim:nvim-dap-python" = {
+      #   url = "github:mfussenegger/nvim-dap-python";
+      #   flake = false;
+      # };
+      #
+      # "vim:nvim-dap-go" = {
+      #   url = "github:leoluz/nvim-dap-go";
+      #   flake = false;
+      # };
+      #
+      # "vim:nvim-dap-virtual-text" = {
+      #   url = "github:theHamsta/nvim-dap-virtual-text";
+      #   flake = false;
+      # };
+      #
+      # "vim:telescope-dap.nvim" = {
+      #   url = "github:nvim-telescope/telescope-dap.nvim";
+      #   flake = false;
+      # };
 
       "vim:plenary.nvim" = {
         url = "github:nvim-lua/plenary.nvim";
