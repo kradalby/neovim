@@ -192,7 +192,7 @@ lspconfig.nixd.setup({
 })
 lspconfig.elmls.setup(min)
 lspconfig.terraformls.setup(min)
-lspconfig.bufls.setup(min)
+lspconfig.buf_ls.setup(min)
 lspconfig.dhall_lsp_server.setup(min)
 lspconfig.golangci_lint_ls.setup(min)
 lspconfig.sourcekit.setup(min)
