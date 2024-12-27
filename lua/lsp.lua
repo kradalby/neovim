@@ -184,11 +184,6 @@ lspconfig.nixd.setup({
   -- Disable formatting as we want to use Alejandra from
   -- null-ls instead.
   capabilities = capabilities,
-  on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-    on_attach(client, bufnr)
-  end,
 })
 lspconfig.elmls.setup(min)
 lspconfig.terraformls.setup(min)
