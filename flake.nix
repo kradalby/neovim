@@ -253,6 +253,11 @@
         flake = false;
       };
 
+      "vim:cwebster2/github-coauthors.nvim" = {
+        url = "github:cwebster2/github-coauthors.nvim";
+        flake = false;
+      };
+
       "vim:co-author.nvim" = {
         url = "github:2KAbhishek/co-author.nvim";
         flake = false;
