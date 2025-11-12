@@ -1,5 +1,4 @@
 require("neodev").setup()
-local lspconfig = require "lspconfig"
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local min = { capabilities = capabilities }
 
@@ -113,16 +112,16 @@ null_ls.setup(
   }
 )
 
-lspconfig.jsonls.setup {
+vim.lsp.config('jsonls', {
   capabilities = capabilities,
   settings = {
     json = {
       schemas = require("schemastore").json.schemas(),
     },
   },
-}
+})
 
-lspconfig.lua_ls.setup({
+vim.lsp.config('lua_ls', {
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -144,7 +143,7 @@ lspconfig.lua_ls.setup({
     },
   },
 })
-lspconfig.gopls.setup {
+vim.lsp.config('gopls', {
   capabilities = capabilities,
   filetypes = { "go", "gomod", "gotexttmpl", "gohtmltmpl" },
   settings = {
@@ -154,9 +153,9 @@ lspconfig.gopls.setup {
       templateExtensions = { "tmpl", "gotmpl", "tpl" },
     },
   }
-}
+})
 
-lspconfig.yamlls.setup {
+vim.lsp.config('yamlls', {
   capabilities = capabilities,
   filetypes = {
     "yaml", "yaml.ansible", "ansible"
@@ -169,40 +168,35 @@ lspconfig.yamlls.setup {
       schemas = require("schemastore").json.schemas(),
     },
   },
-}
+})
 
-lspconfig.ansiblels.setup {
+vim.lsp.config('ansiblels', {
   capabilities = capabilities,
   filetypes = { "yaml", "yaml.ansible", "ansible" },
-  root_dir = function(fname)
-    return lspconfig.util.root_pattern { "requirements.yaml", "inventory" } (fname)
-  end
-}
+  root_markers = { "requirements.yaml", "inventory" },
+})
 
-lspconfig.nil_ls.setup(min)
-lspconfig.nixd.setup({
+vim.lsp.config('nil_ls', min)
+vim.lsp.config('nixd', {
   -- Disable formatting as we want to use Alejandra from
   -- null-ls instead.
   capabilities = capabilities,
 })
-lspconfig.elmls.setup(min)
-lspconfig.terraformls.setup(min)
-lspconfig.buf_ls.setup(min)
-lspconfig.dhall_lsp_server.setup(min)
-lspconfig.golangci_lint_ls.setup(min)
-lspconfig.sourcekit.setup(min)
-lspconfig.ts_ls.setup(min)
-lspconfig.pyright.setup(min)
-lspconfig.cssls.setup({
+vim.lsp.config('elmls', min)
+vim.lsp.config('terraformls', min)
+vim.lsp.config('buf_ls', min)
+vim.lsp.config('dhall_lsp_server', min)
+vim.lsp.config('golangci_lint_ls', min)
+vim.lsp.config('sourcekit', min)
+vim.lsp.config('ts_ls', min)
+vim.lsp.config('pyright', min)
+vim.lsp.config('cssls', {
   capabilities = capSnippets,
 })
-lspconfig.jsonls.setup({
+vim.lsp.config('html', {
   capabilities = capSnippets,
 })
-lspconfig.html.setup({
-  capabilities = capSnippets,
-})
-lspconfig.tailwindcss.setup({
+vim.lsp.config('tailwindcss', {
   -- Disable formatting as we want to use Alejandra from
   -- null-ls instead.
   capabilities = capabilities,
@@ -231,3 +225,25 @@ lspconfig.tailwindcss.setup({
 })
 
 require("rust-tools").setup {}
+
+-- Enable all configured LSP servers
+vim.lsp.enable({
+  'jsonls',
+  'lua_ls',
+  'gopls',
+  'yamlls',
+  'ansiblels',
+  'nil_ls',
+  'nixd',
+  'elmls',
+  'terraformls',
+  'buf_ls',
+  'dhall_lsp_server',
+  'golangci_lint_ls',
+  'sourcekit',
+  'ts_ls',
+  'pyright',
+  'cssls',
+  'html',
+  'tailwindcss',
+})

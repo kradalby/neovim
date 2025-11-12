@@ -47,10 +47,11 @@
         flake = false;
       };
 
-      "vim:nvim-lspconfig" = {
-        url = "github:neovim/nvim-lspconfig";
-        flake = false;
-      };
+      # Removed nvim-lspconfig since Neovim 0.11+ has native LSP configuration support via vim.lsp.config
+      # "vim:nvim-lspconfig" = {
+      #   url = "github:neovim/nvim-lspconfig";
+      #   flake = false;
+      # };
 
       "vim:lsp-status.nvim" = {
         url = "github:nvim-lua/lsp-status.nvim";
