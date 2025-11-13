@@ -78,3 +78,11 @@ vim.filetype.add({
     PROJECT              = "yaml",
   },
 })
+
+-- Auto line break at 80 for text-based filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "gitcommit", "gitrebase", "markdown", "text" },
+  callback = function()
+    vim.opt_local.textwidth = 80
+  end,
+})
