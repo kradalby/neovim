@@ -47,7 +47,7 @@ opt.listchars = { tab = ">·", trail = "·", extends = ">", precedes = "<" } -- 
 opt.number = true                                                          -- Print line number
 opt.relativenumber = false                                                 -- Relative line numbers
 opt.wrap = true                                                            -- Disable line wrap
-opt.textwidth = 80
+opt.colorcolumn = "80"                                                     -- Show subtle line at 80 characters
 
 keymap.set("n", "<leader>o", "m`o<Esc>``", {}) -- Insert a newline in normal mode
 
