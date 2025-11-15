@@ -58,11 +58,6 @@
         flake = false;
       };
 
-      "vim:neodev.nvim" = {
-        url = "github:folke/neodev.nvim";
-        flake = false;
-      };
-
       "vim:null-ls.nvim" = {
         url = "github:nvimtools/none-ls.nvim";
         flake = false;
@@ -298,16 +293,16 @@
           # Temporarily disable checks while we implement proper dependencies
           doCheck = false;
         };
-        
+
         # Build all plugins first
         basePlugins = pkgs.lib.mapAttrsToList buildPlugin (pkgs.lib.filterAttrs (n: v: pkgs.lib.strings.hasPrefix "vim:" n) inputs);
-        
+
         # For debugging, let's see what plugin names we actually have
         pluginNames = map (plugin: plugin.name) basePlugins;
-        
+
         # Convert to attribute set for easy referencing
         pluginSet = pkgs.lib.listToAttrs (map (plugin: pkgs.lib.nameValuePair plugin.name plugin) basePlugins);
-        
+
         # For now, use basic plugins to test if the build works
         vimPackages = basePlugins;
 
