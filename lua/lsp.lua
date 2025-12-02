@@ -224,7 +224,7 @@ vim.lsp.config('tailwindcss', {
   },
 })
 
-require("rust-tools").setup {}
+vim.lsp.config('rust_analyzer', min)
 
 -- Enable all configured LSP servers
 vim.lsp.enable({
@@ -246,4 +246,5 @@ vim.lsp.enable({
   'cssls',
   'html',
   'tailwindcss',
+  'rust_analyzer',
 })
