@@ -105,7 +105,6 @@ null_ls.setup(
       null_ls.builtins.formatting.swiftformat,
       -- null_ls.builtins.formatting.terraform_fmt, -- Covered by LSP?
       null_ls.builtins.formatting.trim_newlines,
-      null_ls.builtins.formatting.trim_whitespace,
       null_ls.builtins.formatting.packer,
       null_ls.builtins.hover.dictionary
     }
