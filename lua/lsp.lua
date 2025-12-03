@@ -44,7 +44,6 @@ null_ls.setup(
     end,
     sources = {
       null_ls.builtins.code_actions.eslint_d,
-      null_ls.builtins.code_actions.proselint,
       null_ls.builtins.code_actions.shellcheck,
       null_ls.builtins.code_actions.statix,
       null_ls.builtins.completion.spell,
@@ -65,7 +64,6 @@ null_ls.setup(
       null_ls.builtins.diagnostics.gitlint,
       null_ls.builtins.diagnostics.hadolint,
       null_ls.builtins.diagnostics.mypy,
-      null_ls.builtins.diagnostics.proselint,
       null_ls.builtins.diagnostics.pylama,
       null_ls.builtins.diagnostics.shellcheck,
       null_ls.builtins.diagnostics.staticcheck,
