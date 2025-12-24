@@ -342,7 +342,13 @@
             packages.kradalby = with pkgs.vimPlugins; {
               start =
                 [
-                  (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+                  # Filter out tlaplus grammar due to nixpkgs bug with scoped npm package names
+                  # The @tlaplus/tree-sitter-tlaplus package causes grammarToPlugin to fail
+                  # See: https://github.com/NixOS/nixpkgs/issues/341442
+                  (nvim-treesitter.withPlugins (_:
+                    builtins.filter (g: !(pkgs.lib.hasInfix "tlaplus" (pkgs.lib.getName g)))
+                      pkgs.tree-sitter.allGrammars
+                  ))
                   telescopeFzfNative
                 ]
                 ++ vimPackages;
