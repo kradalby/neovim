@@ -52,56 +52,6 @@
         flake = false;
       };
 
-      "vim:nvim-cmp" = {
-        url = "github:hrsh7th/nvim-cmp";
-        flake = false;
-      };
-
-      "vim:cmp-buffer" = {
-        url = "github:hrsh7th/cmp-buffer";
-        flake = false;
-      };
-
-      "vim:cmp-nvim-lsp" = {
-        url = "github:hrsh7th/cmp-nvim-lsp";
-        flake = false;
-      };
-
-      "vim:cmp-path" = {
-        url = "github:hrsh7th/cmp-path";
-        flake = false;
-      };
-
-      "vim:cmp-vsnip" = {
-        url = "github:hrsh7th/cmp-vsnip";
-        flake = false;
-      };
-
-      "vim:cmp-cmdline" = {
-        url = "github:hrsh7th/cmp-cmdline";
-        flake = false;
-      };
-
-      "vim:cmp-nvim-lsp-signature-help" = {
-        url = "github:hrsh7th/cmp-nvim-lsp-signature-help";
-        flake = false;
-      };
-
-      "vim:cmp-emoji" = {
-        url = "github:hrsh7th/cmp-emoji";
-        flake = false;
-      };
-
-      "vim:cmp-git" = {
-        url = "github:petertriho/cmp-git";
-        flake = false;
-      };
-
-      "vim:vim-vsnip" = {
-        url = "github:hrsh7th/vim-vsnip";
-        flake = false;
-      };
-
       "vim:nvim-autopairs" = {
         url = "github:windwp/nvim-autopairs";
         flake = false;
@@ -293,6 +243,7 @@
                       pkgs.tree-sitter.allGrammars
                   ))
                   telescopeFzfNative
+                  blink-cmp
                 ]
                 ++ vimPackages;
             };

@@ -1,9 +1,3 @@
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local min = { capabilities = capabilities }
-
-local capSnippets = require('cmp_nvim_lsp').default_capabilities()
-capSnippets.textDocument.completion.completionItem.snippetSupport = true
-
 local null_ls = require("null-ls")
 local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
 
