@@ -33,6 +33,7 @@ vim.lsp.config('gopls', {
   settings = {
     gopls = {
       gofumpt = true,
+      staticcheck = true,
       templateExtensions = { "tmpl", "gotmpl", "tpl" },
     },
   }
@@ -110,4 +111,22 @@ vim.lsp.enable({
   'vtsls',
   'pyright',
   'ruff',
+})
+
+-- LSP keymaps (buffer-local, only active when a server attaches)
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp-keymaps", { clear = true }),
+  callback = function(event)
+    local map = function(mode, lhs, rhs, desc)
+      vim.keymap.set(mode, lhs, rhs, { buffer = event.buf, desc = desc })
+    end
+
+    map("n", "<leader>h", vim.lsp.buf.hover, "Hover")
+    map("n", "<leader>r", vim.lsp.buf.rename, "Rename")
+    map("n", "<leader>a", vim.lsp.buf.code_action, "Code action")
+    map("n", "<leader>f", vim.lsp.buf.references, "References")
+    map("n", "<leader>s", vim.diagnostic.open_float, "Diagnostic float")
+    map("n", "<leader>dn", function() vim.diagnostic.jump({ count = 1 }) end, "Next diagnostic")
+    map("n", "<leader>dp", function() vim.diagnostic.jump({ count = -1 }) end, "Prev diagnostic")
+  end,
 })

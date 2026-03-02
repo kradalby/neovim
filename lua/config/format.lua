@@ -66,11 +66,6 @@ require("conform").setup({
 
     -- XML via tidy
     xml = { "tidy" },
-
-    -- CSS linting/formatting via stylelint
-    -- (prettier handles CSS by default above, uncomment if you prefer stylelint)
-    -- css = { "stylelint" },
-    -- scss = { "stylelint" },
   },
 
   -- Format on save
@@ -100,3 +95,8 @@ require("conform").setup({
 
 -- Set formatexpr for gq operator
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+-- Manual format keymap
+vim.keymap.set('n', '<leader>ff', function()
+  require("conform").format({ async = true, lsp_format = "fallback" })
+end, { desc = "Format buffer" })
