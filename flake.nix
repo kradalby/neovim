@@ -37,24 +37,8 @@
       #   flake = false;
       # };
 
-      "vim:nvim-ts-rainbow" = {
-        url = "github:p00f/nvim-ts-rainbow";
-        flake = false;
-      };
-
       "vim:nvim-colorizer.lua" = {
-        url = "github:norcalli/nvim-colorizer.lua";
-        flake = false;
-      };
-
-      # Removed nvim-lspconfig since Neovim 0.11+ has native LSP configuration support via vim.lsp.config
-      # "vim:nvim-lspconfig" = {
-      #   url = "github:neovim/nvim-lspconfig";
-      #   flake = false;
-      # };
-
-      "vim:lsp-status.nvim" = {
-        url = "github:nvim-lua/lsp-status.nvim";
+        url = "github:catgoose/nvim-colorizer.lua";
         flake = false;
       };
 
@@ -118,11 +102,6 @@
         flake = false;
       };
 
-      "vim:lspkind-nvim" = {
-        url = "github:onsails/lspkind-nvim";
-        flake = false;
-      };
-
       "vim:nvim-autopairs" = {
         url = "github:windwp/nvim-autopairs";
         flake = false;
@@ -145,7 +124,7 @@
       };
 
       "vim:nvim-web-devicons" = {
-        url = "github:kyazdani42/nvim-web-devicons";
+        url = "github:nvim-tree/nvim-web-devicons";
         flake = false;
       };
 
@@ -160,32 +139,12 @@
       };
 
       "vim:sqlite.lua" = {
-        url = "github:tami5/sqlite.lua";
-        flake = false;
-      };
-
-      "vim:Comment.nvim" = {
-        url = "github:numToStr/Comment.nvim";
+        url = "github:kkharji/sqlite.lua";
         flake = false;
       };
 
       "vim:gitsigns.nvim" = {
         url = "github:lewis6991/gitsigns.nvim";
-        flake = false;
-      };
-
-      "vim:vim-polyglot" = {
-        url = "github:sheerun/vim-polyglot";
-        flake = false;
-      };
-
-      "vim:vim-cooklang" = {
-        url = "github:luizribeiro/vim-cooklang";
-        flake = false;
-      };
-
-      "vim:octo.nvim" = {
-        url = "github:pwntester/octo.nvim";
         flake = false;
       };
 
@@ -239,23 +198,13 @@
         flake = false;
       };
 
-      "vim:telescope-ui-select.nvim" = {
-        url = "github:nvim-telescope/telescope-ui-select.nvim";
-        flake = false;
-      };
-
       "vim:telescope.nvim" = {
         url = "github:nvim-telescope/telescope.nvim";
         flake = false;
       };
 
-      "vim:cwebster2/github-coauthors.nvim" = {
+      "vim:github-coauthors.nvim" = {
         url = "github:cwebster2/github-coauthors.nvim";
-        flake = false;
-      };
-
-      "vim:co-author.nvim" = {
-        url = "github:2KAbhishek/co-author.nvim";
         flake = false;
       };
 
