@@ -1,11 +1,12 @@
 require("nix")
 require("filetype")
 require("completion")
+require("format")
+require("lint")
 require("todo")
 require("lsp")
-local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
-local fn = vim.fn   -- to call Vim functions e.g. fn.bufnr()
-local g = vim.g     -- a table to access global variables))
+local cmd = vim.cmd
+local g = vim.g
 local opt = vim.opt
 local keymap = vim.keymap
 
@@ -47,7 +48,9 @@ opt.colorcolumn = "80"                                                     -- Sh
 
 keymap.set("n", "<leader>o", "m`o<Esc>``", {}) -- Insert a newline in normal mode
 
-keymap.set('n', '<leader>ff', vim.lsp.buf.format, {})
+keymap.set('n', '<leader>ff', function()
+  require("conform").format({ async = true, lsp_format = "fallback" })
+end, {})
 
 keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
 keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
