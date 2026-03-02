@@ -27,7 +27,6 @@ opt.expandtab = true    -- Use spaces instead of tabs
 opt.shiftwidth = indent -- Size of an indent
 opt.smartindent = true  -- Insert indents automatically
 opt.tabstop = indent    -- Number of spaces tabs count for
-opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
 opt.hidden = true                                                          -- Enable modified buffers in background
 opt.ignorecase = true                                                      -- Ignore case
 opt.joinspaces = false                                                     -- No double spaces with join after a dot
