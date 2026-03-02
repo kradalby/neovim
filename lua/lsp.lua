@@ -53,11 +53,6 @@ vim.lsp.config('yamlls', {
   },
 })
 
-vim.lsp.config('ansiblels', {
-  filetypes = { "yaml", "yaml.ansible", "ansible" },
-  root_markers = { "requirements.yaml", "inventory" },
-})
-
 vim.lsp.config('nixd', {})
 
 vim.lsp.enable({
@@ -65,19 +60,8 @@ vim.lsp.enable({
   'lua_ls',
   'gopls',
   'yamlls',
-  'ansiblels',
-  'nil_ls',
   'nixd',
-  'elmls',
   'terraformls',
-  'buf_ls',
-  'dhall_lsp_server',
-  'golangci_lint_ls',
-  'sourcekit',
   'ts_ls',
   'pyright',
-  'cssls',
-  'html',
-  'tailwindcss',
-  'rust_analyzer',
 })
