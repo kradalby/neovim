@@ -42,8 +42,13 @@
         flake = false;
       };
 
-      "vim:null-ls.nvim" = {
-        url = "github:nvimtools/none-ls.nvim";
+      "vim:conform.nvim" = {
+        url = "github:stevearc/conform.nvim";
+        flake = false;
+      };
+
+      "vim:nvim-lint" = {
+        url = "github:mfussenegger/nvim-lint";
         flake = false;
       };
 
