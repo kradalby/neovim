@@ -1,6 +1,0 @@
-require "colorizer".setup()
-require("nvim-autopairs").setup()
-require("mini.indentscope").setup()
-require("mini.starter").setup()
-require("mini.statusline").setup()
-require("gitsigns").setup()

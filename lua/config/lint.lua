@@ -19,10 +19,7 @@ lint.linters_by_ft = {
   fish = { "fish" },
 
   -- Git
-  gitcommit = { "gitlint", "commitlint" },
-
-  -- Go
-  go = { "staticcheck" },
+  gitcommit = { "gitlint" },
 
   -- HTML
   html = { "tidy" },
@@ -42,8 +39,8 @@ lint.linters_by_ft = {
   -- Protobuf
   proto = { "buf_lint" },
 
-  -- Python
-  python = { "ruff", "mypy" },
+  -- Python (ruff diagnostics come from the LSP server, mypy for type checking)
+  python = { "mypy" },
 
   -- Shell
   sh = { "shellcheck" },
@@ -61,13 +58,18 @@ lint.linters_by_ft = {
   yaml = { "yamllint" },
 }
 
--- Trigger linting on relevant events
-vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+-- Trigger linting on file read and write
+vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
   group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
   callback = function()
     lint.try_lint()
+  end,
+})
 
-    -- Run editorconfig-checker on all file types
+-- Run editorconfig-checker on write only (spawns external process)
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = vim.api.nvim_create_augroup("nvim-lint-editorconfig", { clear = true }),
+  callback = function()
     lint.try_lint("editorconfig-checker")
   end,
 })
