@@ -4,26 +4,6 @@ local min = { capabilities = capabilities }
 local capSnippets = require('cmp_nvim_lsp').default_capabilities()
 capSnippets.textDocument.completion.completionItem.snippetSupport = true
 
-require('lspsaga').setup({
-  request_timeout = 5000,
-  finder = {
-    jump_to = 'p',
-    edit = { "o", "<CR>" },
-    vsplit = "v",
-    split = "i",
-    tabe = "t",
-    quit = { "q", "<ESC>" },
-  },
-  definition = {
-    edit = "<C-c>o",
-    vsplit = "v",
-    split = "<C-c>i",
-    tabe = "t",
-    quit = "q",
-    close = "<Esc>",
-  },
-})
-
 local null_ls = require("null-ls")
 local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
 
