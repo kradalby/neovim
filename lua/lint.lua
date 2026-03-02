@@ -43,7 +43,7 @@ lint.linters_by_ft = {
   proto = { "buf_lint" },
 
   -- Python
-  python = { "mypy" },
+  python = { "ruff", "mypy" },
 
   -- Shell
   sh = { "shellcheck" },
