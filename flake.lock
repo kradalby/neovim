@@ -56,8 +56,8 @@
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
         "telescope-fzf-native.nvim": "telescope-fzf-native.nvim",
-        "vim:co-author.nvim": "vim:co-author.nvim",
         "vim:conform.nvim": "vim:conform.nvim",
+        "vim:github-coauthors.nvim": "vim:github-coauthors.nvim",
         "vim:gitsigns.nvim": "vim:gitsigns.nvim",
         "vim:mini.nvim": "vim:mini.nvim",
         "vim:nvim-autopairs": "vim:nvim-autopairs",
@@ -105,22 +105,6 @@
         "type": "github"
       }
     },
-    "vim:co-author.nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1760590310,
-        "narHash": "sha256-YP5LaXvizPWIEpZOfXUrxAFG2K3oD9sVeXHJQj6vNzo=",
-        "owner": "2KAbhishek",
-        "repo": "co-author.nvim",
-        "rev": "f07e2ec7b4267c1c38cecf5f209c0844373bc1cc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "2KAbhishek",
-        "repo": "co-author.nvim",
-        "type": "github"
-      }
-    },
     "vim:conform.nvim": {
       "flake": false,
       "locked": {
@@ -134,6 +118,22 @@
       "original": {
         "owner": "stevearc",
         "repo": "conform.nvim",
+        "type": "github"
+      }
+    },
+    "vim:github-coauthors.nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1670948652,
+        "narHash": "sha256-dZ2VCyRZXXLbtK2I9hk2ZM8qqbMgv1Va1mbiJSc/4Cw=",
+        "owner": "cwebster2",
+        "repo": "github-coauthors.nvim",
+        "rev": "3cf0bf406fcbb9b442589c05b306bfe11e1d27b0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cwebster2",
+        "repo": "github-coauthors.nvim",
         "type": "github"
       }
     },
