@@ -50,14 +50,13 @@ keymap.set("n", "<leader>o", "m`o<Esc>``", {}) -- Insert a newline in normal mod
 
 keymap.set('n', '<leader>ff', vim.lsp.buf.format, {})
 
-keymap.set("n", "<leader>h", "<cmd>:Lspsaga hover_doc<cr>", {})
-keymap.set("n", "<leader>r", "<cmd>:Lspsaga rename<cr>", {})
-keymap.set("n", "<leader>a", "<cmd>:Lspsaga code_action<cr>", {})
--- keymap.set('n', '<leader>d', "<cmd>:Lspsaga peek_definition<cr>", {})
-keymap.set('n', '<leader>f', "<cmd>:Lspsaga lsp_finder<cr>", {})
-keymap.set('n', '<leader>s', "<cmd>:Lspsaga show_diagnostics<cr>", {})
-keymap.set("n", "<leader>dn", "<cmd>:Lspsaga diagnostic_jump_next<cr>", {})
-keymap.set("n", "<leader>dp", "<cmd>:Lspsaga diagnostic_jump_prev<cr>", {})
+keymap.set("n", "<leader>h", vim.lsp.buf.hover, {})
+keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
+keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
+keymap.set("n", "<leader>f", vim.lsp.buf.references, {})
+keymap.set("n", "<leader>s", vim.diagnostic.open_float, {})
+keymap.set("n", "<leader>dn", function() vim.diagnostic.jump({ count = 1 }) end, {})
+keymap.set("n", "<leader>dp", function() vim.diagnostic.jump({ count = -1 }) end, {})
 
 keymap.set("n", "<leader>gc", "<cmd>:Coauth<cr>", {})
 
