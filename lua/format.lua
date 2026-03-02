@@ -3,8 +3,8 @@ require("conform").setup({
     -- Nix
     nix = { "alejandra" },
 
-    -- Python: isort first (sorts imports), then black (formats code)
-    python = { "isort", "black" },
+    -- Python: ruff handles both import sorting and formatting
+    python = { "ruff_fix", "ruff_format" },
 
     -- Go: conditional goimports + golines
     go = function(bufnr)

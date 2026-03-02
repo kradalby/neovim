@@ -32,8 +32,7 @@ vim.lsp.config('gopls', {
   filetypes = { "go", "gomod", "gotexttmpl", "gohtmltmpl" },
   settings = {
     gopls = {
-      gofumpt = false,
-      staticcheck = true,
+      gofumpt = true,
       templateExtensions = { "tmpl", "gotmpl", "tpl" },
     },
   }
@@ -53,7 +52,53 @@ vim.lsp.config('yamlls', {
   },
 })
 
-vim.lsp.config('nixd', {})
+vim.lsp.config('nixd', {
+  settings = {
+    nixd = {
+      nixpkgs = {
+        -- Use the nixpkgs from the flake in the current directory, falling
+        -- back to the system flake registry.
+        expr = 'import <nixpkgs> {}',
+      },
+    },
+  },
+})
+
+vim.lsp.config('vtsls', {
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+  },
+  settings = {
+    typescript = {
+      updateImportsOnFileMove = { enabled = "always" },
+    },
+    javascript = {
+      updateImportsOnFileMove = { enabled = "always" },
+    },
+    vtsls = {
+      enableMoveToFileCodeAction = true,
+      autoUseWorkspaceTsdk = true,
+    },
+  },
+})
+
+vim.lsp.config('ruff', {
+  -- Ruff handles linting and formatting for Python; disable hover in
+  -- favour of pyright which provides richer type information.
+  init_options = {
+    settings = {
+      organizeImports = true,
+    },
+  },
+  on_attach = function(client, _)
+    client.server_capabilities.hoverProvider = false
+  end,
+})
 
 vim.lsp.enable({
   'jsonls',
@@ -62,6 +107,7 @@ vim.lsp.enable({
   'yamlls',
   'nixd',
   'terraformls',
-  'ts_ls',
+  'vtsls',
   'pyright',
+  'ruff',
 })
