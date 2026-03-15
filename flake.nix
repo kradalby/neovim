@@ -26,7 +26,7 @@
     {
       overlays.default = final: prev: let
         pkgs = import nixpkgs {
-          inherit (prev) system;
+          inherit (prev.stdenv.hostPlatform) system;
         };
 
         # Build plugins not available in nixpkgs from flake inputs
@@ -44,7 +44,7 @@
 
         neovim-nix-lua-conf = pkgs.writeText "nix.lua" ''
           vim.g.sqlite_clib_path = "${pkgs.sqlite.out}/lib/${
-            if pkgs.stdenv.isDarwin
+            if pkgs.stdenv.hostPlatform.isDarwin
             then "libsqlite3.dylib"
             else "libsqlite3.so"
           }"
