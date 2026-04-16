@@ -3,7 +3,7 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "nixpkgs/nixpkgs-unstable";
 
     # Plugins not available in nixpkgs
     "vim:vim-plist" = {
