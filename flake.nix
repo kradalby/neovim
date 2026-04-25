@@ -32,9 +32,9 @@
         # Build plugins not available in nixpkgs from flake inputs
         buildPlugin = n: v:
           pkgs.vimUtils.buildVimPlugin {
-            name = pkgs.lib.strings.removePrefix "vim:" n;
+            pname = pkgs.lib.strings.removePrefix "vim:" n;
+            version = v.shortRev or v.rev or "unstable";
             src = v.outPath;
-            namePrefix = "";
             doCheck = false;
           };
 
