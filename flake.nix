@@ -5,6 +5,11 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
 
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Plugins not available in nixpkgs
     "vim:vim-plist" = {
       url = "github:darfink/vim-plist";
@@ -17,119 +22,141 @@
     };
   };
 
-  outputs = {
-    self,
-    flake-utils,
-    nixpkgs,
-    ...
-  } @ inputs:
+  outputs =
+    { self
+    , flake-utils
+    , nixpkgs
+    , treefmt-nix
+    , ...
+    } @ inputs:
     {
-      overlays.default = final: prev: let
-        pkgs = import nixpkgs {
-          inherit (prev.stdenv.hostPlatform) system;
-        };
-
-        # Build plugins not available in nixpkgs from flake inputs
-        buildPlugin = n: v:
-          pkgs.vimUtils.buildVimPlugin {
-            pname = pkgs.lib.strings.removePrefix "vim:" n;
-            version = v.shortRev or v.rev or "unstable";
-            src = v.outPath;
-            doCheck = false;
+      overlays.default = final: prev:
+        let
+          pkgs = import nixpkgs {
+            inherit (prev.stdenv.hostPlatform) system;
           };
 
-        flakePlugins =
-          pkgs.lib.mapAttrsToList buildPlugin
-          (pkgs.lib.filterAttrs (n: _: pkgs.lib.strings.hasPrefix "vim:" n) inputs);
-
-        neovim-nix-lua-conf = pkgs.writeText "nix.lua" ''
-          vim.g.sqlite_clib_path = "${pkgs.sqlite.out}/lib/${
-            if pkgs.stdenv.hostPlatform.isDarwin
-            then "libsqlite3.dylib"
-            else "libsqlite3.so"
-          }"
-        '';
-
-        neovim-kradalby-luaconfig = pkgs.stdenv.mkDerivation rec {
-          name = "neovim-kradalby-luaconfig";
-          src = pkgs.nix-gitignore.gitignoreSource [] ./.;
-          phases = "installPhase";
-          installPhase = ''
-            mkdir -p $out/lua
-            cp ${neovim-nix-lua-conf} $out/lua/nix.lua
-            cp -r ${src}/init.lua $out/init.lua
-            cp -r ${src}/lua/* $out/lua/.
-          '';
-        };
-      in {
-        neovim-kradalby = pkgs.neovim.override {
-          viAlias = true;
-          vimAlias = true;
-          withNodeJs = false;
-
-          configure = {
-            packages.kradalby = {
-              start =
-                (with pkgs.vimPlugins; [
-                  # Treesitter (all grammars, minus tlaplus due to nixpkgs bug)
-                  # See: https://github.com/NixOS/nixpkgs/issues/341442
-                  (nvim-treesitter.withPlugins (_:
-                    builtins.filter (g: !(pkgs.lib.hasInfix "tlaplus" (pkgs.lib.getName g)))
-                    pkgs.tree-sitter.allGrammars))
-
-                  # Completion
-                  blink-cmp
-
-                  # LSP
-                  SchemaStore-nvim
-
-                  # Formatting & Linting
-                  conform-nvim
-                  nvim-lint
-
-                  # Telescope
-                  telescope-nvim
-                  telescope-fzf-native-nvim
-                  plenary-nvim
-
-                  # UI
-                  tokyonight-nvim
-                  nvim-web-devicons
-                  mini-nvim
-
-                  # Git
-                  gitsigns-nvim
-
-                  # Editor
-                  todo-comments-nvim
-                  nvim-neoclip-lua
-                  sqlite-lua
-                ])
-                ++ flakePlugins;
+          # Build plugins not available in nixpkgs from flake inputs
+          buildPlugin = n: v:
+            pkgs.vimUtils.buildVimPlugin {
+              pname = pkgs.lib.strings.removePrefix "vim:" n;
+              version = v.shortRev or v.rev or "unstable";
+              src = v.outPath;
+              doCheck = false;
             };
 
-            customRC = ''
-              set runtimepath^=${neovim-kradalby-luaconfig}
-              luafile ${neovim-kradalby-luaconfig}/init.lua
+          flakePlugins =
+            pkgs.lib.mapAttrsToList buildPlugin
+              (pkgs.lib.filterAttrs (n: _: pkgs.lib.strings.hasPrefix "vim:" n) inputs);
+
+          neovim-nix-lua-conf = pkgs.writeText "nix.lua" ''
+            vim.g.sqlite_clib_path = "${pkgs.sqlite.out}/lib/${
+              if pkgs.stdenv.hostPlatform.isDarwin
+              then "libsqlite3.dylib"
+              else "libsqlite3.so"
+            }"
+          '';
+
+          neovim-kradalby-luaconfig = pkgs.stdenv.mkDerivation rec {
+            name = "neovim-kradalby-luaconfig";
+            src = pkgs.nix-gitignore.gitignoreSource [ ] ./.;
+            phases = "installPhase";
+            installPhase = ''
+              mkdir -p $out/lua
+              cp ${neovim-nix-lua-conf} $out/lua/nix.lua
+              cp -r ${src}/init.lua $out/init.lua
+              cp -r ${src}/lua/* $out/lua/.
             '';
           };
+        in
+        {
+          neovim-kradalby = pkgs.neovim.override {
+            viAlias = true;
+            vimAlias = true;
+            withNodeJs = false;
+
+            configure = {
+              packages.kradalby = {
+                start =
+                  (with pkgs.vimPlugins; [
+                    # Treesitter (all grammars, minus tlaplus due to nixpkgs bug)
+                    # See: https://github.com/NixOS/nixpkgs/issues/341442
+                    (nvim-treesitter.withPlugins (_:
+                      builtins.filter (g: !(pkgs.lib.hasInfix "tlaplus" (pkgs.lib.getName g)))
+                        pkgs.tree-sitter.allGrammars))
+
+                    # Completion
+                    blink-cmp
+
+                    # LSP
+                    SchemaStore-nvim
+
+                    # Formatting & Linting
+                    conform-nvim
+                    nvim-lint
+
+                    # Telescope
+                    telescope-nvim
+                    telescope-fzf-native-nvim
+                    plenary-nvim
+
+                    # UI
+                    tokyonight-nvim
+                    nvim-web-devicons
+                    mini-nvim
+
+                    # Git
+                    gitsigns-nvim
+
+                    # Editor
+                    todo-comments-nvim
+                    nvim-neoclip-lua
+                    sqlite-lua
+                  ])
+                  ++ flakePlugins;
+              };
+
+              customRC = ''
+                set runtimepath^=${neovim-kradalby-luaconfig}
+                luafile ${neovim-kradalby-luaconfig}/init.lua
+              '';
+            };
+          };
         };
-      };
     }
     // flake-utils.lib.eachDefaultSystem (
-      system: let
+      system:
+      let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [self.overlays.default];
+          overlays = [ self.overlays.default ];
         };
-      in {
+
+        treefmt = treefmt-nix.lib.evalModule pkgs {
+          projectRootFile = "flake.nix";
+          programs.nixpkgs-fmt.enable = true;
+        };
+
+        fmtSrc = pkgs.lib.fileset.toSource {
+          root = ./.;
+          fileset = pkgs.lib.fileset.fileFilter (f: f.hasExt "nix") ./.;
+        };
+      in
+      {
         packages = {
           inherit (pkgs) neovim-kradalby;
           default = pkgs.neovim-kradalby;
         };
 
-        apps.neovim-kradalby = flake-utils.lib.mkApp {drv = pkgs.neovim-kradalby;};
-        apps.default = flake-utils.lib.mkApp {drv = pkgs.neovim-kradalby;};
+        apps.neovim-kradalby = flake-utils.lib.mkApp { drv = pkgs.neovim-kradalby; };
+        apps.default = flake-utils.lib.mkApp { drv = pkgs.neovim-kradalby; };
+
+        checks = {
+          build = self.packages.${system}.neovim-kradalby;
+          formatting = treefmt.config.build.check fmtSrc;
+        };
+
+        formatter = treefmt.config.build.wrapper;
       }
     );
 }

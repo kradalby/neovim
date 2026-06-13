@@ -1,7 +1,7 @@
-require('blink.cmp').setup({
+require("blink.cmp").setup({
   keymap = {
-    preset = 'default',
-    ['<CR>'] = { 'accept', 'fallback' },
+    preset = "default",
+    ["<CR>"] = { "accept", "fallback" },
   },
 
   completion = {
@@ -25,7 +25,7 @@ require('blink.cmp').setup({
   },
 
   sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer' },
+    default = { "lsp", "path", "snippets", "buffer" },
   },
 
   cmdline = {

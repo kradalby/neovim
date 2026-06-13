@@ -81,11 +81,16 @@ require("conform").setup({
       args = {
         "-quiet",
         "-xml",
-        "--indent", "auto",
-        "--indent-spaces", "2",
-        "--wrap", "80",
-        "--sort-attributes", "alpha",
-        "--tidy-mark", "no",
+        "--indent",
+        "auto",
+        "--indent-spaces",
+        "2",
+        "--wrap",
+        "80",
+        "--sort-attributes",
+        "alpha",
+        "--tidy-mark",
+        "no",
       },
       stdin = true,
       exit_codes = { 0, 1 },
@@ -97,6 +102,6 @@ require("conform").setup({
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 -- Manual format keymap
-vim.keymap.set('n', '<leader>ff', function()
+vim.keymap.set("n", "<leader>ff", function()
   require("conform").format({ async = true, lsp_format = "fallback" })
 end, { desc = "Format buffer" })

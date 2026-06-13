@@ -1,4 +1,4 @@
-vim.lsp.config('jsonls', {
+vim.lsp.config("jsonls", {
   settings = {
     json = {
       schemas = require("schemastore").json.schemas(),
@@ -6,7 +6,7 @@ vim.lsp.config('jsonls', {
   },
 })
 
-vim.lsp.config('lua_ls', {
+vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
       format = {
@@ -16,9 +16,9 @@ vim.lsp.config('lua_ls', {
         enable = true,
         arrayIndex = "Disable", -- "Enable", "Auto", "Disable"
         await = true,
-        paramName = "Disable",  -- "All", "Literal", "Disable"
+        paramName = "Disable", -- "All", "Literal", "Disable"
         paramType = false,
-        semicolon = "Disable",  -- "All", "SameLine", "Disable"
+        semicolon = "Disable", -- "All", "SameLine", "Disable"
         setType = true,
       },
       diagnostics = {
@@ -28,7 +28,7 @@ vim.lsp.config('lua_ls', {
   },
 })
 
-vim.lsp.config('gopls', {
+vim.lsp.config("gopls", {
   filetypes = { "go", "gomod", "gotexttmpl", "gohtmltmpl" },
   settings = {
     gopls = {
@@ -36,12 +36,14 @@ vim.lsp.config('gopls', {
       staticcheck = true,
       templateExtensions = { "tmpl", "gotmpl", "tpl" },
     },
-  }
+  },
 })
 
-vim.lsp.config('yamlls', {
+vim.lsp.config("yamlls", {
   filetypes = {
-    "yaml", "yaml.ansible", "ansible"
+    "yaml",
+    "yaml.ansible",
+    "ansible",
   },
   settings = {
     yaml = {
@@ -53,19 +55,19 @@ vim.lsp.config('yamlls', {
   },
 })
 
-vim.lsp.config('nixd', {
+vim.lsp.config("nixd", {
   settings = {
     nixd = {
       nixpkgs = {
         -- Use the nixpkgs from the flake in the current directory, falling
         -- back to the system flake registry.
-        expr = 'import <nixpkgs> {}',
+        expr = "import <nixpkgs> {}",
       },
     },
   },
 })
 
-vim.lsp.config('vtsls', {
+vim.lsp.config("vtsls", {
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -88,7 +90,7 @@ vim.lsp.config('vtsls', {
   },
 })
 
-vim.lsp.config('ruff', {
+vim.lsp.config("ruff", {
   -- Ruff handles linting and formatting for Python; disable hover in
   -- favour of pyright which provides richer type information.
   init_options = {
@@ -102,15 +104,15 @@ vim.lsp.config('ruff', {
 })
 
 vim.lsp.enable({
-  'jsonls',
-  'lua_ls',
-  'gopls',
-  'yamlls',
-  'nixd',
-  'terraformls',
-  'vtsls',
-  'pyright',
-  'ruff',
+  "jsonls",
+  "lua_ls",
+  "gopls",
+  "yamlls",
+  "nixd",
+  "terraformls",
+  "vtsls",
+  "pyright",
+  "ruff",
 })
 
 -- LSP keymaps (buffer-local, only active when a server attaches)
@@ -126,7 +128,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>a", vim.lsp.buf.code_action, "Code action")
     map("n", "<leader>f", vim.lsp.buf.references, "References")
     map("n", "<leader>s", vim.diagnostic.open_float, "Diagnostic float")
-    map("n", "<leader>dn", function() vim.diagnostic.jump({ count = 1 }) end, "Next diagnostic")
-    map("n", "<leader>dp", function() vim.diagnostic.jump({ count = -1 }) end, "Prev diagnostic")
+    map("n", "<leader>dn", function()
+      vim.diagnostic.jump({ count = 1 })
+    end, "Next diagnostic")
+    map("n", "<leader>dp", function()
+      vim.diagnostic.jump({ count = -1 })
+    end, "Prev diagnostic")
   end,
 })
