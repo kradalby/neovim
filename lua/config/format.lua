@@ -1,7 +1,7 @@
 require("conform").setup({
   formatters_by_ft = {
     -- Nix
-    nix = { "alejandra" },
+    nix = { "nixfmt" },
 
     -- Python: ruff handles both import sorting and formatting
     python = { "ruff_fix", "ruff_format" },
