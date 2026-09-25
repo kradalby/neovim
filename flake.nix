@@ -148,8 +148,20 @@
           default = pkgs.neovim-kradalby;
         };
 
-        apps.neovim-kradalby = flake-utils.lib.mkApp { drv = pkgs.neovim-kradalby; };
-        apps.default = flake-utils.lib.mkApp { drv = pkgs.neovim-kradalby; };
+        apps =
+          let
+            # mkApp derives /bin/<pname> (bin/neovim), which the wrapper does
+            # not ship; getExe follows meta.mainProgram.
+            app = {
+              type = "app";
+              program = pkgs.lib.getExe pkgs.neovim-kradalby;
+              meta.description = "kradalby's Neovim distribution";
+            };
+          in
+          {
+            neovim-kradalby = app;
+            default = app;
+          };
 
         checks = {
           build = self.packages.${system}.neovim-kradalby;
